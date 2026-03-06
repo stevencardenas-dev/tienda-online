@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - ShopModern</title>
+    <!-- Fuentes y Estilos -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Estilos específicos para la página de Registro/Login -->
+    <style>
+        body {
+            background-color: #f7f6f8;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .page-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 80px);
+            padding: 2rem 0;
+        }
+
+        .registro-container {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .registro-container .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #7f13ec;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .registro-container .logo span {
+            font-size: 2rem;
+        }
+
+        .registro-container .logo h2 {
+            margin: 0;
+            font-weight: 900;
+            font-size: 1.5rem;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        p.subtitle {
+            color: #64748b;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            transition: border-color 0.2s, ring 0.2s;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #7f13ec;
+            box-shadow: 0 0 0 3px rgba(127, 19, 236, 0.1);
+        }
+
+        .registro-container button {
+            width: 100%;
+            background-color: #7f13ec;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            margin-top: 1rem;
+        }
+
+        .registro-container button:hover {
+            background-color: #6a0fc7;
+        }
+
+        .registro-container button:active {
+            transform: scale(0.98);
+        }
+
+        .footer-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .footer-link a {
+            color: #7f13ec;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer-link a:hover {
+            text-decoration: underline;
+        }
+
+        #mensaje {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            display: none;
+            text-align: center;
+        }
+
+        .error {
+            background-color: #fef2f2;
+            color: #b91c1c;
+            border: 1px solid #fee2e2;
+        }
+
+        .success {
+            background-color: #ecfdf5;
+            color: #047857;
+            border: 1px solid #d1fae5;
+        }
+
+        /* Utilidades para grid layout del formulario */
+        .grid-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0 1rem;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .half-width {
+            grid-column: span 1;
+        }
+
+        @media (max-width: 480px) {
+            .grid-form {
+                grid-template-columns: 1fr;
+            }
+
+            .half-width {
+                grid-column: 1 / -1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER: Reutiliza estilos globales, navegación simplificada -->
+    <header>
+        <div class="header-left">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                </div>
+                <h2>ShopModern</h2>
+            </a>
+            <nav>
+                <a href="index.html">Inicio</a>
+            </nav>
+        </div>
+        <div class="header-right">
+            <div class="nav-actions">
+                <a href="carrito.html" class="btn-icon">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span id="cart-count" class="cart-badge" style="display: none;">0</span>
+                </a>
+                <button class="btn-icon" id="btn-user">
+                    <span class="material-symbols-outlined">person</span>
+                    <span id="user-name-display" style="display: none;"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-content">
+        <div class="registro-container">
+            <div class="logo">
+                <span class="material-symbols-outlined">shopping_bag</span>
+                <h2>ShopModern</h2>
+            </div>
+            <!-- VISTA REGISTRO -->
+            <div id="view-register">
+                <h1>Registro de cliente</h1>
+                <p class="subtitle">Únete a nuestra comunidad hoy mismo</p>
+
+                <form id="registro-form" class="grid-form">
+                    <div class="form-group half-width">
+                        <label for="nombres">Nombres</label>
+                        <input type="text" id="nombres" name="nombres" placeholder="Ej. Juan" required>
+                    </div>
+                    <div class="form-group half-width">
+                        <label for="apellidos">Apellidos</label>
+                        <input type="text" id="apellidos" name="apellidos" placeholder="Ej. Pérez" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" placeholder="tu@ejemplo.com" required>
+                    </div>
+                    <div class="form-group half-width">
+                        <label for="documento">Documento</label>
+                        <input type="text" id="documento" name="documento" placeholder="Ej. 1234567890" required>
+                    </div>
+                    <div class="form-group half-width">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="Ej. 123456789" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="direccion">Dirección</label>
+                        <input type="text" id="direccion" name="direccion" placeholder="Ej. Calle Principal 123"
+                            required>
+                    </div>
+
+                    <button type="submit" id="btn-registro" class="full-width">Registrarse</button>
+                </form>
+
+                <div class="footer-link">
+                    <a href="#" id="link-to-login">Iniciar sesion si ya esta registrado</a>
+                </div>
+            </div>
+
+            <!-- VISTA LOGIN -->
+            <div id="view-login" style="display: none;">
+                <h1>Iniciar Sesión</h1>
+                <p class="subtitle">¡Qué bueno verte de nuevo!</p>
+
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Correo Electrónico</label>
+                        <input type="email" id="login-email" name="email" placeholder="tu@ejemplo.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-telefono">Teléfono (Contraseña)</label>
+                        <input type="tel" id="login-telefono" name="telefono" placeholder="Tu número de teléfono"
+                            required>
+                    </div>
+
+                    <button type="submit" id="btn-login" style="margin-top: 1.5rem;">Ingresar</button>
+                </form>
+
+                <div class="footer-link">
+                    <a href="#" id="link-to-register">Registrarse si no tiene cuenta</a>
+                </div>
+            </div>
+
+            <div id="mensaje"></div>
+
+            <div class="footer-link" style="margin-top: 2rem;">
+                <a href="index.html">← Volver al inicio</a>
+            </div>
+        </div>
+        <script type="module" src="js/auth.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito - ShopModern</title>
+    <!-- Fuentes y Estilos -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- HEADER: Navegación fija con contador de carrito -->
+    <header>
+        <div class="header-left">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                </div>
+                <h2>ShopModern</h2>
+            </a>
+            <nav>
+                <a href="index.html">Inicio</a>
+            </nav>
+        </div>
+        <div class="header-right">
+            <div class="nav-actions">
+                <a href="carrito.html" class="btn-icon">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span id="cart-count" class="cart-badge" style="display: none;">0</span>
+                </a>
+                <button class="btn-icon" id="btn-user">
+                    <span class="material-symbols-outlined">person</span>
+                    <span id="user-name-display" style="display: none;"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL: Layout de dos columnas (Items vs Resumen) -->
+    <main class="cart-page"
+        style="max-width: 1200px; margin: 0 auto; padding: 2rem 2.5rem; display: grid; grid-template-columns: 2fr 1fr; gap: 2.5rem; align-items: start;">
+
+        <!-- SECCIÓN DE ITEMS: Contenedor dinámico de productos -->
+        <div class="cart-items-section">
+            <h1 style="margin-top: 0; margin-bottom: 2rem; font-size: 2rem; font-weight: 800;">Tu Carrito</h1>
+            <div id="carrito-contenedor" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <!-- Inyectado dinámicamente por carrito.js -> renderCarrito() -->
+                <p style="color: var(--text-slate-500);">Cargando tu carrito...</p>
+            </div>
+        </div>
+
+        <!-- SECCIÓN DE RESUMEN: Totales y botón de Checkout -->
+        <div class="cart-summary-section"
+            style="background: white; border: 1px solid var(--border-slate-200); border-radius: 1rem; padding: 1.5rem; position: sticky; top: 6rem;">
+            <h3
+                style="margin-top: 0; font-size: 1.25rem; border-bottom: 1px solid var(--border-slate-200); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+                Resumen de la Orden</h3>
+
+            <div
+                style="display: flex; justify-content: space-between; margin-bottom: 1rem; color: var(--text-slate-600);">
+                <span>Subtotal</span>
+                <span id="cart-subtotal">$0.00</span>
+            </div>
+
+            <div
+                style="display: flex; justify-content: space-between; margin-bottom: 1.5rem; color: var(--text-slate-600);">
+                <span>Envío</span>
+                <span>Gratis</span>
+            </div>
+
+            <div
+                style="display: flex; justify-content: space-between; margin-bottom: 2rem; font-weight: 800; font-size: 1.25rem; border-top: 1px solid var(--border-slate-200); padding-top: 1.5rem;">
+                <span>Total</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+
+            <!-- Acción de compra (Controlada por carrito.js -> setupCheckout()) -->
+            <button class="btn-primary" style="width: 100%; padding: 1rem; font-size: 1rem;" id="btn-checkout">Proceder
+                al Pago</button>
+        </div>
+    </main>
+
+    <!-- Contenedor para Notificaciones flotantes (Toasts) -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Scripts de Gestión de Carrito -->
+    <script type="module" src="js/api.js"></script>
+    <script type="module" src="js/carrito.js"></script>
+</body>
+
+</html>

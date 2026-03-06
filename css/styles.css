@@ -1,0 +1,969 @@
+/* ==========================================================================
+   1. VARIABLES & DESIGN TOKENS
+   Define el sistema de diseño central: colores, radios, fuentes y espaciados.
+   ========================================================================== */
+:root {
+    --primary: #7f13ec;
+    --primary-hover: #6a0fc7;
+    --primary-light: rgba(127, 19, 236, 0.1);
+    --background-light: #f7f6f8;
+    --text-slate-900: #0f172a;
+    --text-slate-700: #334155;
+    --text-slate-500: #64748b;
+    --text-slate-400: #94a3b8;
+    --border-slate-200: #e2e8f0;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --font-display: 'Inter', sans-serif;
+}
+
+/* ==========================================================================
+   2. BASE STYLES & RESET
+   Configuración global del cuerpo del documento y suavizado de fuentes.
+   ========================================================================== */
+body {
+    background-color: var(--background-light);
+    color: var(--text-slate-900);
+    font-family: var(--font-display);
+    margin: 0;
+    min-height: 100vh;
+}
+
+/* Header & Nav */
+/* ==========================================================================
+   3. HEADER & NAVIGATION
+   Barra superior fija con logo, menú de navegación y barra de búsqueda.
+   ========================================================================== */
+header {
+    background: white;
+    border-bottom: 1px solid var(--border-slate-200);
+    padding: 1rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.logo-icon {
+    background: var(--primary);
+    color: white;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+}
+
+.logo h2 {
+    font-weight: 900;
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    gap: 2rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-slate-700);
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: color 0.2s;
+    position: relative;
+    padding-bottom: 0.25rem;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: width 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--primary);
+}
+
+nav a:hover::after,
+nav a.active::after {
+    width: 100%;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Barra de búsqueda con icono y padding interno para el input */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #f8fafc;
+    border: 1px solid var(--border-slate-200);
+    border-radius: 0.5rem;
+    padding: 0 0.75rem;
+    height: 2.5rem;
+    width: 300px;
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    padding: 0.5rem;
+    flex: 1;
+    font-size: 0.875rem;
+}
+
+.search-bar input:focus {
+    outline: none;
+}
+
+.search-bar span {
+    color: var(--text-slate-400);
+}
+
+/* Contenedor de botones de acción: Carrito, Usuario, Registro */
+.nav-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    font-size: 0.875rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+}
+
+.btn-icon {
+    background: #f1f5f9;
+    color: var(--text-slate-700);
+    border: none;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    position: relative;
+    /* Para el badge */
+}
+
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ef4444;
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 800;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-icon:hover {
+    background: #e2e8f0;
+}
+
+.btn-user-logged {
+    width: auto;
+    padding: 0 1rem;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+/* Main Layout */
+/* ==========================================================================
+   4. MAIN LAYOUT
+   Contenedor principal para centrar el contenido en pantallas grandes.
+   ========================================================================== */
+main {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 2rem 2.5rem;
+}
+
+/* Hero Section */
+/* ==========================================================================
+   5. HERO SECTION
+   Sección destacada inicial con gradientes y llamadas a la acción (CTA).
+   ========================================================================== */
+.hero {
+    background: linear-gradient(90deg, rgba(25, 16, 34, 0.9) 0%, rgba(127, 19, 236, 0.2) 100%),
+        url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    border-radius: 1rem;
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 4rem;
+    color: white;
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-badge {
+    background: rgba(127, 19, 236, 0.2);
+    border: 1px solid rgba(127, 19, 236, 0.3);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    width: fit-content;
+    margin-bottom: 1rem;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    margin: 0 0 1rem 0;
+    line-height: 1.1;
+}
+
+.hero h1 span {
+    color: var(--primary);
+}
+
+.hero p {
+    font-size: 1.125rem;
+    color: var(--text-slate-400);
+    max-width: 450px;
+    margin-bottom: 2rem;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-large {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+}
+
+.btn-outline {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/* Categories */
+.category-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-slate-200);
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+    overflow-x: auto;
+}
+
+.tab {
+    padding-bottom: 1rem;
+    color: var(--text-slate-500);
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+}
+
+.tab.active {
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+/* Products Grid */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+}
+
+.section-header h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.section-header p {
+    color: var(--text-slate-500);
+    margin: 0.25rem 0 0 0;
+}
+
+.view-all {
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ==========================================================================
+   6. PRODUCTS GRID & CARDS
+   Visualización de productos en cuadrícula adaptable y diseño de tarjetas.
+   ========================================================================== */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+@media (max-width: 1200px) {
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Product Card */
+.product-card {
+    background: white;
+    border-radius: 0.75rem;
+    border: 1px solid #f1f5f9;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    aspect-ratio: 1;
+    background: #f1f5f9;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.1);
+}
+
+.card-actions {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    transform: translateY(120%);
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.product-card:hover .card-actions {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.add-btn {
+    width: 100%;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    box-shadow: 0 10px 15px -3px rgba(127, 19, 236, 0.3);
+}
+
+/* Botón de favoritos oculto por solicitud de UX */
+.favorite-btn {
+    display: none;
+}
+
+.product-info {
+    padding: 1.25rem;
+}
+
+.product-category {
+    color: var(--primary);
+    font-size: 0.625rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.product-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin: 0.25rem 0 0.5rem 0;
+}
+
+.product-price {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.price-current {
+    color: var(--primary);
+    font-size: 1.25rem;
+    font-weight: 900;
+}
+
+.price-old {
+    color: var(--text-slate-400);
+    font-size: 0.875rem;
+    text-decoration: line-through;
+}
+
+/* Global Scroll */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+/* Category Rows Layout */
+/* ==========================================================================
+   7. CATEGORY ROWS (HOME BLOCKS)
+   Bloques visuales grandes para categorías con animaciones de hover complejas.
+   ========================================================================== */
+.category-rows-container {
+    padding: 6rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.category-row-item {
+    display: flex;
+    align-items: center;
+    background: #1e293b;
+    /* Fondo base oscuro */
+    text-decoration: none;
+    color: white;
+    /* Texto blanco para contraste */
+    padding: 3.5rem;
+    border-radius: 2.5rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+    border: none;
+}
+
+.category-row-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    opacity: 0.4;
+    /* Imagen de fondo sutil */
+    transition: transform 0.8s ease, opacity 0.4s ease;
+}
+
+/* Degradados coloridos por categoría */
+.category-row-item[data-categoria="Electrónica"]::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(127, 19, 236, 0.9), rgba(30, 41, 59, 0.8));
+    z-index: 2;
+}
+
+.category-row-item[data-categoria="Ropa"]::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(236, 19, 127, 0.9), rgba(30, 41, 59, 0.8));
+    z-index: 2;
+}
+
+.category-row-item[data-categoria="Hogar"]::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(19, 236, 200, 0.9), rgba(30, 41, 59, 0.8));
+    z-index: 2;
+}
+
+.category-row-item[data-categoria="Deportes"]::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(236, 127, 19, 0.9), rgba(30, 41, 59, 0.8));
+    z-index: 2;
+}
+
+.category-row-icon,
+.category-row-content,
+.category-row-arrow {
+    position: relative;
+    z-index: 3;
+}
+
+.category-row-item:nth-child(even) {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+.category-row-icon {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    width: 120px;
+    height: 120px;
+    border-radius: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.5s ease;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.category-row-icon span {
+    font-size: 3.5rem;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.category-row-content {
+    flex: 1;
+}
+
+.category-row-content h3 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.category-row-content p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 600px;
+}
+
+.category-row-item:nth-child(even) .category-row-content p {
+    margin-left: auto;
+}
+
+.category-row-arrow {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #cbd5e1;
+    transition: all 0.4s ease;
+}
+
+.category-row-arrow span {
+    font-size: 2rem;
+}
+
+/* Hover effects */
+.category-row-item:hover {
+    transform: translateY(-10px) scale(1.01);
+    box-shadow: 0 30px 60px rgba(127, 19, 236, 0.12);
+    border-color: rgba(127, 19, 236, 0.3);
+}
+
+.category-row-item:hover .category-row-bg {
+    transform: scale(1.1);
+    opacity: 0.6;
+}
+
+.category-row-item:hover .category-row-icon {
+    background: white;
+    color: #7f13ec;
+    transform: rotate(8deg);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.category-row-item:hover .category-row-icon span {
+    transform: scale(1.15);
+}
+
+.category-row-item:hover .category-row-content h3 {
+    color: white;
+}
+
+.category-row-item:hover .category-row-arrow {
+    background: #7f13ec;
+    color: white;
+    transform: translateX(15px);
+}
+
+.category-row-item:nth-child(even):hover .category-row-arrow {
+    transform: translateX(-15px) rotate(180deg);
+}
+
+@media (max-width: 768px) {
+
+    .category-row-item,
+    .category-row-item:nth-child(even) {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+        padding: 2.5rem;
+    }
+
+    .category-row-content p {
+        margin: 0 auto;
+    }
+
+    .category-row-arrow {
+        display: none;
+    }
+
+    .category-row-icon {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* Footer */
+/* ==========================================================================
+   8. FOOTER
+   Pie de página con enlaces, información de contacto y suscripción.
+   ========================================================================== */
+footer {
+    background: white;
+    border-top: 1px solid var(--border-slate-200);
+    padding: 4rem 2.5rem;
+    margin-top: 5rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+.footer-section h4 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: var(--text-slate-500);
+    font-size: 0.875rem;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+}
+
+.footer-bottom {
+    border-top: 1px solid #f1f5f9;
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-slate-400);
+    font-size: 0.75rem;
+}
+
+/* User Modal Floating Container */
+/* ==========================================================================
+   9. USER MODAL & OVERLAYS
+   Ventanas emergentes y fondos oscurecidos para interacción de perfil.
+   ========================================================================== */
+.user-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.user-modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.user-modal {
+    background: white;
+    border-radius: 1rem;
+    width: 90%;
+    max-width: 400px;
+    padding: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transform: translateY(20px);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+}
+
+.user-modal-overlay.active .user-modal {
+    transform: translateY(0);
+}
+
+.user-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #f1f5f9;
+    border: none;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-slate-500);
+    transition: all 0.2s;
+}
+
+.user-modal-close:hover {
+    background: #e2e8f0;
+    color: var(--text-slate-900);
+}
+
+.user-modal-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.user-modal-avatar {
+    width: 4rem;
+    height: 4rem;
+    background: var(--primary-light);
+    color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.user-modal-name {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-slate-900);
+    margin: 0 0 0.25rem 0;
+}
+
+.user-modal-email {
+    font-size: 0.875rem;
+    color: var(--text-slate-500);
+    margin: 0;
+}
+
+.user-modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.btn-danger {
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fee2e2;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+}
+
+.btn-danger:hover {
+    background: #fee2e2;
+}
+
+/* Notifications / Toasts */
+/* ==========================================================================
+   10. NOTIFICATIONS (TOASTS)
+   Mensajes temporales flotantes para feedback de acciones del usuario.
+   ========================================================================== */
+.toast-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    z-index: 2000;
+    pointer-events: none;
+}
+
+.toast {
+    background: white;
+    border-radius: 1rem;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid var(--primary);
+    transform: translateX(120%);
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    min-width: 320px;
+    pointer-events: auto;
+}
+
+.toast.active {
+    transform: translateX(0);
+}
+
+.toast-icon {
+    width: 3rem;
+    height: 3rem;
+    background: var(--primary-light);
+    color: var(--primary);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.toast-icon span {
+    font-size: 1.75rem;
+}
+
+.toast-content {
+    flex: 1;
+}
+
+.toast-content h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text-slate-900);
+}
+
+.toast-content p {
+    margin: 0.25rem 0 0 0;
+    font-size: 0.875rem;
+    color: var(--text-slate-500);
+    line-height: 1.4;
+}
+
+.toast-success {
+    border-left-color: #22c55e;
+}
+
+.toast-success .toast-icon {
+    background: #f0fdf4;
+    color: #22c55e;
+}
+
+.toast-error {
+    border-left-color: #ef4444;
+}
+
+.toast-error .toast-icon {
+    background: #fef2f2;
+    color: #ef4444;
+}

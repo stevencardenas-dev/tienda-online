@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopModern - Premium E-commerce</title>
+    <!-- Fuentes y Estilos -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- HEADER: Navegación, Búsqueda y Acciones de Usuario -->
+    <header>
+        <div class="header-left">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                </div>
+                <h2>ShopModern</h2>
+            </a>
+            <nav>
+                <a href="#" class="nav-link active" data-categoria="Todas">Inicio</a>
+                <a href="#" class="nav-link" data-categoria="Electrónica">Electrónica</a>
+                <a href="#" class="nav-link" data-categoria="Ropa">Ropa</a>
+                <a href="#" class="nav-link" data-categoria="Hogar">Hogar</a>
+                <a href="#" class="nav-link" data-categoria="Deportes">Deportes</a>
+            </nav>
+        </div>
+        <div class="header-right">
+            <!-- Buscador dinámico (Controlado por app.js) -->
+            <div class="search-bar">
+                <span class="material-symbols-outlined">search</span>
+                <input type="text" placeholder="Buscar productos, marcas y más...">
+            </div>
+            <div class="nav-actions">
+                <a href="registro.html" class="btn-primary" id="btn-register">Registrarse</a>
+                <a href="carrito.html" class="btn-icon">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span id="cart-count" class="cart-badge" style="display: none;">0</span>
+                </a>
+                <button class="btn-icon" id="btn-user">
+                    <span class="material-symbols-outlined">person</span>
+                    <span id="user-name-display" style="display: none;"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION: Banner principal con CTA -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">Nueva Colección</div>
+                <h1>Estilo y <br><span>Tecnología</span></h1>
+                <p>Descubre lo último en innovación y tendencias para tu estilo de vida. Calidad premium diseñada para
+                    inspirarte.</p>
+                <div class="hero-btns">
+                    <button id="btn-hero-catalog" class="btn-primary btn-large">Ver Catálogo</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATEGORIES ROWS: Bloques visuales de navegación por categoría -->
+        <section class="category-rows-container" id="home-categories">
+            <!-- Electrónica -->
+            <a href="#" data-categoria="Electrónica" class="category-row-item">
+                <div class="category-row-bg"
+                    style="background-image: url('https://images.unsplash.com/photo-1498049794561-7780e7231661?q=80&w=1200&auto=format&fit=crop');">
+                </div>
+                <div class="category-row-icon">
+                    <span class="material-symbols-outlined">devices</span>
+                </div>
+                <div class="category-row-content">
+                    <h3>Electrónica</h3>
+                    <p>Explora lo último en smartphones, laptops y gadgets de alta gama con tecnología de vanguardia.
+                    </p>
+                </div>
+                <div class="category-row-arrow">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </div>
+            </a>
+
+            <!-- Ropa -->
+            <a href="#" data-categoria="Ropa" class="category-row-item">
+                <div class="category-row-bg"
+                    style="background-image: url('https://images.unsplash.com/photo-1445205170230-053b830c6050?q=80&w=1200&auto=format&fit=crop');">
+                </div>
+                <div class="category-row-icon">
+                    <span class="material-symbols-outlined">apparel</span>
+                </div>
+                <div class="category-row-content">
+                    <h3>Ropa</h3>
+                    <p>Tendencias exclusivas y prendas de diseñador seleccionadas para elevar tu estilo personal.</p>
+                </div>
+                <div class="category-row-arrow">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </div>
+            </a>
+
+            <!-- Hogar -->
+            <a href="#" data-categoria="Hogar" class="category-row-item">
+                <div class="category-row-bg"
+                    style="background-image: url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1200&auto=format&fit=crop');">
+                </div>
+                <div class="category-row-icon">
+                    <span class="material-symbols-outlined">chair</span>
+                </div>
+                <div class="category-row-content">
+                    <h3>Hogar</h3>
+                    <p>Transforma tu espacio vital con muebles minimalistas y decoración de diseño sofisticado.</p>
+                </div>
+                <div class="category-row-arrow">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </div>
+            </a>
+
+            <!-- Deportes -->
+            <a href="#" data-categoria="Deportes" class="category-row-item">
+                <div class="category-row-bg"
+                    style="background-image: url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=1200&auto=format&fit=crop');">
+                </div>
+                <div class="category-row-icon">
+                    <span class="material-symbols-outlined">sports_soccer</span>
+                </div>
+                <div class="category-row-content">
+                    <h3>Deportes</h3>
+                    <p>Equipamiento profesional y accesorios de alto rendimiento para superar todos tus límites.</p>
+                </div>
+                <div class="category-row-arrow">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </div>
+            </a>
+        </section>
+
+        <!-- PRODUCTS SECTION: Grid de productos (Cargado en modo SPA cuando se aplica un filtro) -->
+        <section class="products-section" id="products-section" style="display: none;">
+            <div class="section-header">
+                <div>
+                    <h2 id="products-category-title">Productos</h2>
+                    <p>Explora nuestra selección especialmente para ti</p>
+                </div>
+                <a href="#" class="view-all nav-link" data-categoria="Todas"
+                    style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 600; color: var(--text-slate-500);">
+                    <span class="material-symbols-outlined">arrow_back</span> Volver a Inicio
+                </a>
+            </div>
+
+            <div class="products-grid" id="productos">
+                <!-- Inyectado dinámicamente por app.js -> renderProductos() -->
+                <p>Cargando productos...</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER: Información legal, Enlaces y Contacto -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <a href="#" class="logo" style="margin-bottom: 1.5rem;">
+                    <div class="logo-icon" style="width: 1.5rem; height: 1.5rem;">
+                        <span class="material-symbols-outlined" style="font-size: 1rem;">shopping_bag</span>
+                    </div>
+                    <h2 style="font-size: 1rem;">ShopModern</h2>
+                </a>
+                <p style="font-size: 0.875rem; color: var(--text-slate-500); line-height: 1.6;">Elevando tu estilo de
+                    vida a través de productos premium y experiencias de compra sin fisuras desde 2024.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Tienda</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Colecciones</a></li>
+                    <li><a href="#">Novedades</a></li>
+                    <li><a href="#">Tendencias</a></li>
+                    <li><a href="#">Ofertas Flash</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Soporte</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Seguimiento</a></li>
+                    <li><a href="#">Devoluciones</a></li>
+                    <li><a href="#">Envío</a></li>
+                    <li><a href="#">Ayuda</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <ul class="footer-links">
+                    <li><a href="#">123 Fashion Ave, NY 10001</a></li>
+                    <li><a href="#">+1 (800) SHOP-MOD</a></li>
+                    <li><a href="#">support@shopmodern.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 ShopModern Inc. Todos los derechos reservados.</p>
+            <div style="display: flex; gap: 1.5rem;">
+                <a href="#" style="color: inherit; text-decoration: none;">Privacidad</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Términos</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL DE PERFIL: Información del usuario y Logout -->
+    <div id="user-modal" class="user-modal-overlay">
+        <div class="user-modal">
+            <button id="close-user-modal" class="user-modal-close">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <div class="user-modal-header">
+                <div class="user-modal-avatar">
+                    <span id="modal-user-initial">U</span>
+                </div>
+                <h3 id="modal-user-name" class="user-modal-name">Usuario</h3>
+                <p id="modal-user-email" class="user-modal-email">Cliente Registrado</p>
+            </div>
+            <div class="user-modal-actions">
+                <button id="btn-logout" class="btn-danger">
+                    <span class="material-symbols-outlined">logout</span>
+                    Cerrar Sesión
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor para Notificaciones flotantes (Toasts) -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Scripts Principales -->
+    <script type="module" src="js/api.js"></script>
+    <script type="module" src="js/app.js"></script>
+</body>
+
+</html>
